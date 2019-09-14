@@ -63,12 +63,8 @@ func LogEntryParser(filePath string) error {
 	for scanner.Scan() {
 		go func() {
 			mapParams = GetParams(pattern, scanner.Text())
-			err := SinkLog(mapParams)
-			if err != nil {
-				fmt.Println(err)
-				os.Exit(1)
-			}
-			err = SinkLog(mapParams)
+			err := PersistLog(mapParams)
+			//err := SinkLog(mapParams)
 			if err != nil {
 				fmt.Println(err)
 				os.Exit(1)
